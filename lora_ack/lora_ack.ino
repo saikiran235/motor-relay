@@ -9,8 +9,10 @@ extern char device_id[10];
 bool flag;
 extern bool status_var;
 unsigned long       interval_delay = 0;
+
 unsigned long       start_time = 0;
-uint8_t sync_word=0xBB; const unsigned long frequency=865E6;
+uint8_t sync_word=0xBB; 
+const unsigned long frequency=865E6;
 void send_ack()
 {
   char send_buf[50]={0};

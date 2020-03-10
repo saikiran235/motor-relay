@@ -52,7 +52,7 @@ void create_json_object( char *tx_packet_buffer, const uint8_t tx_packet_buffer_
   StaticJsonBuffer<150> jsonBuffer;
   JsonObject &root = jsonBuffer.createObject();
 #endif
-  root["id"]    =device_id;
+  root["id"]    = "LoRa_1";
   if(strcmp(state,"1") == 0)
   {
   root["ack"]   ="1";

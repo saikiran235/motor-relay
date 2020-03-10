@@ -17,7 +17,7 @@
 #include <EEPROM.h>
 
 #include "json.h"
-#include "eeprom_utils.h"
+//#include "eeprom_utils.h"
 #include "lora.h"
 
 /*!

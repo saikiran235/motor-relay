@@ -30,7 +30,7 @@ const byte          sync_word             = 0xBB;
 bool                LoRa_ack = false;    
 
 unsigned long       start_time = 0;
-unsigned long       status_time = 30000;
+unsigned long       status_time = 0;
 unsigned long       status_delay =70000;
  
 
@@ -151,7 +151,8 @@ void loop(){
         {
         if(parse_json(rx_packet_buffer, sizeof(rx_packet_buffer)))
         {
-         
+         if(strcmp(received_dev_id,"LoRa_1") == 0)
+         {
           int val;
           val = atoi(ack);
            switch(val)
@@ -177,6 +178,7 @@ void loop(){
             default:
             break;
            }
+          }
          }
         }
        }
