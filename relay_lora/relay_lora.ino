@@ -32,6 +32,10 @@ bool                LoRa_ack = false;
 unsigned long       start_time = 0;
 unsigned long       status_time = 0;
 unsigned long       status_delay =70000;
+unsigned long       transmit_delay = 0;
+
+
+unsigned long     start1_time = 0;
  
 
 
@@ -182,6 +186,7 @@ void loop(){
          }
         }
        }
+       /********checking LoRa ACk status*****/
        else{
          if((start_time - status_time) > status_delay)
          {
@@ -192,6 +197,15 @@ void loop(){
           }  
        }
 start_time = millis();
+/********Sending Lora Packet for every one minute*******/
+      if((millis() - start1_time) > transmit_delay)
+      {
+        char tx_packet_buffer[50] = "Alive";
+        send_lora_data(tx_packet_buffer);  
+        start1_time = millis(); 
+        transmit_delay = 31000;
+      }
+  
 delay(1);
 }
 

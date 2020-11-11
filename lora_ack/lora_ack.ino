@@ -1,7 +1,7 @@
 #include "lora.h"
 #include "json.h"
-#define relay 17
-#define led 16
+#define relay 19
+#define led 18
 #define buffer_size 50
 bool valid_data_rxvd=false;
 char state[10];
@@ -9,8 +9,11 @@ extern char device_id[10];
 bool flag;
 extern bool status_var;
 unsigned long       interval_delay = 0;
-
 unsigned long       start_time = 0;
+
+unsigned long       start1_time = 0;
+unsigned long       status_time = 0;
+unsigned long       status_delay = 60000;
 uint8_t sync_word=0xBB; 
 const unsigned long frequency=865E6;
 void send_ack()
@@ -71,7 +74,20 @@ void loop()
       }
     }
    } 
+   status_time = millis();
   }
+  /*****Checking LoRa communication establishment of transmitter*******/
+  else{
+         if((start1_time - status_time) > status_delay) 
+         {
+            digitalWrite(led, LOW);
+            digitalWrite(relay,LOW);
+            status_time = start1_time;
+            status_var = 0;
+          }  
+       }
+  start1_time = millis();
+    /*****Sending LoRa data for every 30 sec*******/
     if((millis() - start_time) > interval_delay)
      {
        char tx_packet_buffer[50] = {0};

@@ -61,7 +61,7 @@
 #define LoRa_LED 4
 
 #define OFF_BUTTON_PIN 22
-#define Status_LED 25
+#define Status_LED 19
 /*!
  * @struct      device_info
  * @brief       Device specific info.
